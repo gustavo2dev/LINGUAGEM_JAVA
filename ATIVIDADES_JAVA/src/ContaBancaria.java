@@ -13,7 +13,8 @@ public class ContaBancaria {
     public void depositar(double valor) {
         if (valor > 0) {
             saldo += valor;
-            System.out.println("Depósito de R$ " + valor + " realizado com sucesso.");
+            System.out.println("Depósito de R$ " + valor + " realizado com sucesso. \n");
+            exibirConta();
         } else {
             System.out.println("Valor inválido para depósito.");
         }
@@ -27,20 +28,11 @@ public class ContaBancaria {
             System.out.println("Saldo insuficiente.");
         } else {
             saldo -= valor;
-            System.out.println("Saque de R$ " + valor + " realizado com sucesso.");
+            System.out.println("Saque de R$ " + valor + " realizado com sucesso. \n");
+            exibirConta();
         }
     }
 
-   
-    public String getTitular() {
-        return titular;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-   
     public void exibirConta() {
         System.out.println("Titular: " + titular);
         System.out.println("Saldo: R$ " + saldo);
