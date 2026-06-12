@@ -24,7 +24,7 @@ public class ValidadorSenha {
                 System.out.println("\n[SUCESSO] Acesso Permitido! Bem-vindo ao sistema.");
                 acessoConcedido = true;
             } else {
-                int tentativasRestantes = maxTentativas;
+                int tentativasRestantes = maxTentativas - tentativasUsadas;
                 System.out.println("[ERRO] Senha Incorreta!");
                
                 if (tentativasRestantes > 0) {

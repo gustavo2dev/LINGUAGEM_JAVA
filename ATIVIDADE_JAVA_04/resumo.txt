@@ -1,0 +1,129 @@
+public class ContaBancaria {
+    String titular;
+    double saldo;
+    boolean statusConta;
+
+    public void abrirConta() {
+        if (!statusConta) {
+            statusConta = true;
+            System.out.println("Conta aberta com sucesso!");
+        } else {
+            System.out.println("A conta já está ativa.");
+        }
+    }
+
+    public void depositar(double valor) {
+        if (statusConta) {
+            if (valor > 0) {
+                saldo += valor;
+                System.out.println("Depósito de R$ " + valor + " realizado com sucesso.");
+            } else {
+                System.out.println("O valor de depósito deve ser positivo.");
+            }
+        } else {
+            System.out.println("Operação negada. A conta está inativa.");
+        }
+    }
+
+    public void sacar(double valor) {
+        if (statusConta) {
+            if (valor > 0 && valor <= saldo) {
+                saldo -= valor;
+                System.out.println("Saque de R$ " + valor + " realizado com sucesso.");
+            } else if (valor > saldo) {
+                System.out.println("Saldo insuficiente para o saque de R$ " + valor);
+            } else {
+                System.out.println("O valor do saque deve ser positivo.");
+            }
+        } else {
+            System.out.println("Operação negada. A conta está inativa.");
+        }
+    }
+
+    public void consultarSaldo() {
+        System.out.println("Saldo atual: R$ " + saldo);
+    }
+
+    public static void main(String[] args) {
+        ContaBancaria minhaConta = new ContaBancaria();
+        minhaConta.titular = "Ana Silva";
+        minhaConta.statusConta = false;
+
+        // 1. Tentar fazer um depósito (conta inativa)
+        minhaConta.depositar(100.00);
+
+        // 2. Abrir a conta
+        minhaConta.abrirConta();
+
+        // 3. Fazer um depósito válido
+        minhaConta.depositar(500.00);
+
+        // 4. Tentar um saque maior que o saldo
+        minhaConta.sacar(600.00);
+
+        // Mostrar saldo final
+        minhaConta.consultarSaldo();
+    }
+}
+public class CarroCorrida {
+    String piloto;
+    int velocidadeAtual;
+    boolean combustivel;
+    int contadorAceleracoes; // Controla quantas vezes acelerou sem frear
+
+    public void abastecer() {
+        combustivel = true;
+        contadorAceleracoes = 0; // Reseta o contador ao abastecer
+        System.out.println("O carro foi abastecido!");
+    }
+
+    public void acelerar() {
+        if (combustivel) {
+            velocidadeAtual += 20; // Incrementa a velocidade
+            
+            // Limite de 200 km/h
+            if (velocidadeAtual > 200) {
+                velocidadeAtual = 200;
+            }
+            
+            contadorAceleracoes++;
+            System.out.println("Acelerando! Velocidade atual: " + velocidadeAtual + " km/h");
+
+            // Se acelerar 3 vezes seguidas sem frear, o combustível acaba
+            if (contadorAceleracoes >= 3) {
+                combustivel = false;
+                System.out.println("O combustível acabou devido a 3 acelerações seguidas!");
+            }
+        } else {
+            System.out.println("Não é possível acelerar! O tanque está vazio.");
+        }
+    }
+
+    public void frear() {
+        velocidadeAtual = 0;
+        contadorAceleracoes = 0; // Reseta o contador ao frear
+        System.out.println("Freou! O carro parou. Velocidade: 0 km/h. Contador de acelerações resetado.");
+    }
+
+    public static void main(String[] args) {
+        CarroCorrida meuCarro = new CarroCorrida();
+        meuCarro.piloto = "Piloto Exemplo";
+        meuCarro.velocidadeAtual = 0;
+        meuCarro.combustivel = false;
+        meuCarro.contadorAceleracoes = 0;
+
+        // 1. Tentar acelerar sem combustível
+        meuCarro.acelerar();
+
+        // 2. Abastecer
+        meuCarro.abastecer();
+
+        // 3. Acelerar algumas vezes até o combustível acabar (3 vezes)
+        meuCarro.acelerar();
+        meuCarro.acelerar();
+        meuCarro.acelerar(); // Aqui o combustível deve acabar
+
+        // 4. Tentar acelerar novamente para ver a validação
+        meuCarro.acelerar();
+    }
+}

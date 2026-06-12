@@ -28,6 +28,6 @@ public class Adivinhacao{
             System.out.println("Parabéns! Você acertou o número secreto ele era: "+ numeroSecreto + " E vc acertou em "+ numeroTentativas + " tentativas.");
             sc.close();
 
-        }else{System.out.println("SEU BOSTA PEDI PARA DIGITAR 1 E VC NÃO CONSEGUE KKKK!!!!");}
+        }else{System.out.println("Por favor, digite 1 para iniciar o jogo.");}
     }
 }
